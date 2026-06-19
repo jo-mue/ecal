@@ -94,6 +94,7 @@ option(BUILD_ECAL_TESTS                        "Build the eCAL google tests"    
 
 option(ECAL_INCLUDE_PY_SAMPLES                 "Include python language sample projects into CMake"               OFF)
 option(ECAL_INSTALL_SAMPLE_SOURCES             "Install the sources of eCAL samples"                               ON)
+option(ECAL_PACKETIZE                          "Packetize ecal"                                                    ON)
 
 option(ECAL_NPCAP_SUPPORT                      "Enable the eCAL Npcap Receiver (i.e. the Win10 performance fix)"  OFF)
 option(ECAL_USE_CLOCKLOCK_MUTEX                "Use native mutex with monotonic clock (requires glibc >= 2.30)"   OFF)
@@ -448,7 +449,9 @@ endif()
 # --------------------------------------------------------
 # create package
 # --------------------------------------------------------
-include(cpack/cpack_variables.cmake)
+IF(ECAL_PACKETIZE)
+    include(cpack/cpack_variables.cmake)
+endif()
 
 message(STATUS "Build Options:")
 message(STATUS "--------------------------------------------------------------------------------")
